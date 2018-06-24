@@ -1,0 +1,42 @@
+<div class="row ml-2">
+  <div class="col-8 col-sm-8 m-auto">
+      <div class="row">
+        <div class="col-sm-10 col-10">
+            <mat-form-field class="w-100">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+        </div>
+        <div class="col-1 col-sm-1 mt-2 m-auto">
+            <button mat-mini-fab style="background-color: rgb(113, 161, 187)">
+                <mat-icon class="material-icons">add</mat-icon>
+            </button>
+        </div>
+      </div>
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions" >
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button  style="background-color: gainsboro">
+              <mat-icon class="material-icons">add</mat-icon>
+              Add Ques/Ansr
+            </button> 
+          </td>
+        </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>    
+</div>

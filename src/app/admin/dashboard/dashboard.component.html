@@ -1,0 +1,46 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
+  <mat-toolbar style="background-color: rgba(160, 175, 194, 0.7)" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name" style="color:darkslategrey;">Admin 
+        <mat-icon style="vertical-align:sub;color:darkslategray" class="material-icons">home</mat-icon></h1>
+    <span class="fill-remaining-space"></span>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" style="background-color:rgba(245, 245, 245, 0.344)">
+      <mat-nav-list>
+        <a mat-list-item (click)="viewChange('subjects')">
+            <div class="row">
+                <div class="col-sm-4 col-4">
+                    <mat-icon style="color:rgb(122, 119, 119)" class="material-icons">view_list</mat-icon>
+                </div>
+                <div class="col-sm-6 col-6 tex-left" style="padding-left:12px">Subjects</div>
+            </div>
+        </a>
+        <a mat-list-item (click)="viewChange('students')">
+              <div class="row">
+                  <div class="col-sm-4 col-4" >
+                      <mat-icon style="color:rgb(119, 119, 119)" class="material-icons">portrait</mat-icon>
+                  </div>
+                  <div class="col-sm-8 col-8" style="padding-left:7px">Students</div>
+              </div>
+         </a>
+          <a mat-list-item (click)="logout()" >
+                  <div class="row">
+                      <div class="col-sm-4 col-4">
+                          <mat-icon style="color:rgb(63, 12, 184)" class="material-icons">settings_power</mat-icon>
+                        </div>
+                      <div class="col-sm-8 col-8">Logout</div>
+                  </div>
+          </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+       <students *ngIf="view=='students'"></students>
+       <subjects *ngIf="view=='subjects'"></subjects>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
