@@ -1,37 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import{Router} from "@angular/router"
+import { StudentService } from '../student.service';
+import {MatDialog} from '@angular/material';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  login=false;
   constructor(
-    private router:Router
+    private service:StudentService,
+    private dialog:MatDialog
   ) { }
-  arr=[
-    'Javascript',
-    'Angular',
-    'Java',
-    'express js',
-    'Node js',
-    'Typescript',
-    'Mongodb'            
-  ]
 
   ngOnInit() {
   }
- Login(){
-   this.login=true;
- }
+  Login(){
+    this.service.Login();
+  }
+ 
+  Logout(){
+    this.service.Logout();
+  }
 
- Logout(){
-   this.login=false;
- }
- 
- display(value){
-   this.router.navigate(['/quiz'])
- }
- 
+  openLoginDialog() {
+    this.dialog.open(LoginDialogComponent, {
+      width: '450px',
+      height:'350px'
+    });
+  }
 }

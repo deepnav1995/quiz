@@ -4,6 +4,8 @@ import{SharedModule} from '../shared/shared-module';
 import { DashboardComponent } from './dashboard/dashboard.component'
 import{RouterModule} from '@angular/router'
 import { QuizComponent } from './quiz/quiz.component';
+import { LoginDialogComponent } from './dashboard/login-dialog/login-dialog.component';
+import { QuizSubjectsComponent } from './dashboard/quiz-subjects/quiz-subjects.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -11,15 +13,19 @@ import { QuizComponent } from './quiz/quiz.component';
     RouterModule.forChild([
     { 
       path:'',
-      component:DashboardComponent
-
-    },{
-      path:'quiz',
-      //caActivate for route protection
-      component:QuizComponent
+      component:DashboardComponent,
+      children:[{
+        path:'',
+        component:QuizSubjectsComponent
+      },{
+        path:'quiz',
+        component:QuizComponent
+      }
+    ]
     }
   ])
   ],
-  declarations: [DashboardComponent,QuizComponent]
+  entryComponents:[LoginDialogComponent],
+  declarations: [DashboardComponent,QuizComponent, LoginDialogComponent, QuizSubjectsComponent]
 })
 export class StudentModule { }
